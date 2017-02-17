@@ -1,0 +1,216 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<link rel="stylesheet" type="text/css" href="plug/jQuery-Tags-Input-master/dist/jquery.tagsinput.min.css" />
+<link href="plug/datetime/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+<!-- <script src="plug/jquery.min.js"></script> -->
+<div class="widget">
+	<div class="widget-header bordered-bottom bordered-palegreen">
+		<span class="widget-caption">新增出库单据</span>
+	</div>
+	<div class="widget-body">
+		<div>
+			<form class="form-horizontal form-bordered" role="form" id="mfunckdocAddForm">
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label no-padding-right">仓库设置</label>
+					<div class="col-sm-10">
+						<select id="arehouse_id" style="width: 100%;">
+							<c:forEach items="${arehouses }" var="arehouse">
+								<option value="${arehouse.arehouseId }">${arehouse.name }</option>
+							</c:forEach>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label no-padding-right">出库单号</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="ckdjNo" value="${ckdjNo}">
+						<input type="hidden" name="ckdjId" value="${ckdjId}" /> 
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label no-padding-right">客户编号</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="ckdjClientno" placeholder="客户编号">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label no-padding-right">客户名称</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="ckdjClientname" placeholder="客户名称">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label no-padding-right">地址</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="adress" placeholder="详细地址">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label no-padding-right">联系人</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="contacts" placeholder="联系人姓名">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label no-padding-right">联系电话</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="tel" placeholder="电话号码">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label no-padding-right">发货时间</label>
+					<div class="col-sm-10 date date-picker">
+						<input type="text" class="form-control" name="yfhsj">
+						<span class="add-on"><i class="icon-th"></i></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label no-padding-right">说明备注</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="remarks" placeholder="出库单说明备注">
+					</div>
+				</div>
+<!-- 				<button class="btn btn-primary showGoodsInfo" data-toggle="modal" data-target="#showGoodsModal"> -->
+<!-- 					<i class="fa fa-plus-circle"></i> 货品查询 -->
+<!-- 				</button> -->
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label no-padding-right">新增货品明细</label>
+					<div class="col-sm-10">
+						<select id="e1" style="width: 100%;">
+							<c:forEach items="${baseGoodsList }" var="baseGoods">
+								<option value="${baseGoods.name }-${baseGoods.no }">${baseGoods.name }</option>
+							</c:forEach>
+						</select>
+					</div>
+					
+					
+				</div>
+				
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label no-padding-right">录入货品数量 </label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="goodsCount" placeholder="录入货品数量">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label no-padding-right">录入货品单位</label>
+					<div class="col-sm-5">
+						<select id="e3" style="width: 100%;">
+							<option value="">单位选择(--)</option>
+							<option value="szdw">散支单位</option>
+							<option value="zxdw">整箱单位</option>
+						</select>
+					</div>
+					<div class="col-sm-5">
+						<select id="e4" style="width: 100%;">
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="button" class="btn btn-palegreen addTags">附加货品清单</button>
+					</div>
+				</div>
+				
+				
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label no-padding-right">货品清单</label>
+					<div class="col-sm-10">
+						<input name="tags" id="tags" value="" />
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-palegreen">提交入库单</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="showGoodsInfo" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content"></div>
+	</div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="#showGoodsModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">货品明细表</h4>
+			</div>
+			<div class="modal-body">     
+				<div class="row">
+					<div class="col-md-12">
+						<div class="tab-pane fontawesome-demo active" id="tab_1_1">
+							<div class="portlet light bordered">
+								<div class="portlet-title">
+									<div class="caption font-dark">
+										<button type="button" class="btn blue-madison addGoods">
+											<i class="glyphicon glyphicon-plus"></i> 新增货品
+										</button>
+										<button type="button" class="btn btn-danger deleteGoodsByGids">
+											<i class="glyphicon glyphicon-minus"></i> 批量删除
+										</button>
+									</div>
+									<div class="tools"></div>
+								</div>
+								<div class="portlet-body">
+									<table class="table table-bordered table-striped table-advance table-hover" id="goodsTable" style="table-layout:fixed">
+										<thead>
+											<tr>
+												<th>货品ID</th>
+												<th>货品名称</th>
+												<th>货品数量</th>
+												<th>货品单位</th>
+											</tr>
+										</thead>
+										<tbody id="tbody">
+										
+										</tbody>
+								</table>
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default"
+						data-dismiss="modal">关闭
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+<!-- 模态框（Modal） -->
+<script src="plug/select2/select2.js"></script>
+<script src="plug/jQuery-Tags-Input-master/dist/jquery.tagsinput.min.js" type="text/javascript"></script>
+<script src="plug/jquery-validation/js/jquery.validate.min.js"></script>
+<script src="plug/datetime/bootstrap-datetimepicker.min.js"></script>
+<script src="page/js/mfunck/mfunckdocAdd.js" type="text/javascript"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		$('.date-picker').datetimepicker({
+            language: 'cn',
+            orientation: "left",
+            format: "yyyy-MM-dd hh:ii:ss",
+            pickDate: true,  
+            pickTime: true,  
+//             minView: 'month',
+            todayBtn: true,
+            pickerPosition: "bottom-left",
+            autoclose: true
+        });
+		MfunckdocAdd.init();
+	});
+</script>

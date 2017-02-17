@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<div class="widget">
+	<div class="widget-header bordered-bottom bordered-purple">
+		<span class="widget-caption">配置客户</span>
+	</div>
+	<div class="widget-body">
+		<div>
+			<h5>为"${role_name }"配置客户(请尽量为一个角色配置一个客户)！</h5>
+			<hr />
+			<form role="form">
+				<div class="form-group">
+					<c:forEach items="${baseClients }" var="baseClient">
+						<div class="checkbox">
+	                       <label>
+	                           <input type="checkbox" class="colored-purple" value="${baseClient.clientId }" name="${baseClient.clientId }">
+	                           <span class="text">${baseClient.cname }</span>
+	                       </label>
+	                   </div>
+					</c:forEach>
+				</div>
+				<button type="button" class="btn btn-purple roleAddClientSubmit">修改客户关联配置</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<input type="text" value="${role_id }" name="roldPageRid" style="display:none"/>
+<script src="plug/jquery-validation/js/jquery.validate.min.js"></script>
+<script src="page/js/configsys/roleAddClient.js" type="text/javascript"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		RoleAddClient.init();
+	});
+</script>

@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="stylesheet" href="plug/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+
+<div class="widget">
+	<div class="widget-header bordered-bottom bordered-lightred">
+		<span class="widget-caption">配置菜单</span>
+	</div>
+	<div class="widget-body">
+		<div id="horizontal-form">
+			<form class="form-horizontal" role="form">
+				<h5>为"${name }"配置菜单权限！</h5>
+				<hr />
+				
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-1 control-label no-padding-right"></label>
+					<ul id="treeDemo" class="ztree col-sm-9"></ul>
+					<div class="col-sm-offset-1 col-sm-9">
+						<button type="button" class="btn btn-default checkAllNodes">勾选全部</button>
+						<button type="button" class="btn btn-default noCheckAllNodes">清空选择</button>
+						<button type="button" class="btn btn-blue submitAllCheck">修改菜单配置</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<input type="text" value="${rid }" name="roleAddMenu" style="display:none"/>
+<script src="plug/zTree/js/jquery.ztree.core.min.js"></script>
+<script src="plug/zTree/js/jquery.ztree.excheck.min.js"></script>
+<script src="page/js/configsys/roleAddMenu.js" type="text/javascript"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		RoleAddMenu.init();
+	});
+</script>

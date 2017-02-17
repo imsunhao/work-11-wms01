@@ -1,0 +1,103 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<link rel="stylesheet" type="text/css" href="plug/jQuery-Tags-Input-master/dist/jquery.tagsinput.min.css" />
+
+<div class="widget">
+	<div class="widget-header bordered-bottom bordered-palegreen">
+		<span class="widget-caption">新增入库单据</span>
+	</div>
+	<div class="widget-body">
+		<div>
+			<form class="form-horizontal form-bordered" role="form" id="mfunrkdocAddForm">
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label no-padding-right">仓库设置</label>
+					<div class="col-sm-10">
+						<select id="arehouse_id" style="width: 100%;">
+							<c:forEach items="${arehouses }" var="arehouse">
+								<option value="${arehouse.arehouseId }">${arehouse.name }</option>
+							</c:forEach>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label no-padding-right">入库单号</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="rkdjNo" placeholder="入库单号录入">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label no-padding-right">说明备注</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="rkdjComeinfo" placeholder="入库单说明备注">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label no-padding-right">新增货品明细</label>
+					<div class="col-sm-10">
+						<select id="e1" style="width: 100%;">
+							<c:forEach items="${baseGoodsList }" var="baseGoods">
+								<option value="${baseGoods.name }-${baseGoods.no }">${baseGoods.name }</option>
+							</c:forEach>
+						</select>
+					</div>
+					
+					
+				</div>
+				
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label no-padding-right">录入货品数量 </label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="goodsCount" placeholder="录入货品数量">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label no-padding-right">录入货品单位</label>
+					<div class="col-sm-5">
+						<select id="e3" style="width: 100%;">
+							<option value="">单位选择(--)</option>
+							<option value="szdw">散支单位</option>
+							<option value="zxdw">整箱单位</option>
+						</select>
+					</div>
+					<div class="col-sm-5">
+						<select id="e4" style="width: 100%;">
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="button" class="btn btn-palegreen addTags">附加货品清单</button>
+					</div>
+				</div>
+				
+				
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label no-padding-right">货品清单</label>
+					<div class="col-sm-10">
+						<input name="tags" id="tags" value="" />
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-palegreen">提交入库单</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script src="plug/select2/select2.js"></script>
+<script src="plug/jQuery-Tags-Input-master/dist/jquery.tagsinput.min.js" type="text/javascript"></script>
+<script src="plug/jquery-validation/js/jquery.validate.min.js"></script>
+<script src="page/js/mfunrk/mfunrkdocAdd.js" type="text/javascript"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		MfunrkdocAdd.init();
+	});
+</script>

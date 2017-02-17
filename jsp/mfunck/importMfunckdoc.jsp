@@ -1,0 +1,99 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<link href="plug/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+
+<div class="widget flat radius-bordered">
+	<div class="widget-header bg-purple">
+		<span class="widget-caption">Excel主要字段导入设置</span>
+	</div>
+	<div class="widget-body">
+	
+		<form class="form-horizontal form-bordered" role="form" id="docAddForm">
+			<div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label no-padding-right"></label>
+                <div class="col-sm-10">
+                	<i class="fa-fw fa fa-warning"></i>请选择对应的Excel单据导入！
+                </div>
+            </div>
+<!--              <div class="form-group"> -->
+<!--                 <label for="inputEmail3" class="col-sm-2 control-label no-padding-right">选择仓库</label> -->
+<!--                 <div class="col-sm-10"> -->
+<!--                     <select id="arehouse_id" style="width: 100%;"> -->
+<%-- 						<c:forEach items="${arehouses }" var="arehouse"> --%>
+<%-- 							<option value="${arehouse.arehouseId }">${arehouse.name }</option> --%>
+<%-- 						</c:forEach> --%>
+<!-- 					</select> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--             <div class="form-group"> -->
+<!--                 <label for="inputEmail3" class="col-sm-2 control-label no-padding-right">入库单号映射</label> -->
+<!--                 <div class="col-sm-10"> -->
+<!--                     <input type="text" class="form-control" name="docNo" placeholder="xls文件的入库单号的列名"> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--             <div class="form-group"> -->
+<!--                 <label for="inputPassword3" class="col-sm-2 control-label no-padding-right">货品名称映射</label> -->
+<!--                 <div class="col-sm-10"> -->
+<!--                     <input type="text" class="form-control" name="goodsNo" placeholder="xls文件的货品编号的列名"> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--             <div class="form-group"> -->
+<!--                 <label for="inputPassword3" class="col-sm-2 control-label no-padding-right">货品数量映射</label> -->
+<!--                 <div class="col-sm-10"> -->
+<!--                     <input type="text" class="form-control" name="goodsCount" placeholder="xls文件的货品数量的列名"> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--             <div class="form-group"> -->
+<!--                 <label for="inputPassword3" class="col-sm-2 control-label no-padding-right">货品批次映射</label> -->
+<!--                 <div class="col-sm-10"> -->
+<!--                     <input type="text" class="form-control" name="goodsBatch" placeholder="xls文件的货品批次的列名"> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--             <div class="form-group"> -->
+<!--                 <label for="inputPassword3" class="col-sm-2 control-label no-padding-right">货品单位映射</label> -->
+<!--                 <div class="col-sm-10"> -->
+<!--                     <input type="text" class="form-control" name="goodsDw" placeholder="xls文件的货品单位的列名"> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--             <div class="form-group"> -->
+<!--                 <label for="inputPassword3" class="col-sm-2 control-label no-padding-right">列所在行数</label> -->
+<!--                 <div class="col-sm-10"> -->
+<!--                     <input type="text" class="form-control" name="goodsRow" placeholder="xls文件的列名信息在第几行"> -->
+<!--                 </div> -->
+<!--             </div> -->
+            <div class="form-group">
+            	<label for="inputPassword3" class="col-sm-2 control-label no-padding-right">必要操作</label>
+                <div class="col-sm-10">
+                	<input type="text" name="uploadFilePath" style="display: none;"/>
+			        <input type="file" name="uploadify" id="uploadify" />
+			        <%--用来作为文件队列区域--%>
+			        <div id="fileQueue">
+			        </div>
+			        <!-- <p>
+			            <a href="javascript:$('#uploadify').uploadify('upload')">单文件上传</a> | 
+			            <a href="javascript:$('#uploadify').uploadify('cancel')">取消上传</a>|
+			            <a href="javascript:$('#uploadify').uploadify('upload','*')">上传所有</a> | 
+			            <a href="javascript:$('#uploadify').uploadify('cancel','*')">取消所有</a>
+			        </p> -->
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-purple btn-block">导入(请确认已经完成文件上传)</button>
+                </div>
+            </div>
+        </form>
+        
+	</div>
+</div>
+<script src="plug/select2/select2.js"></script>
+<script src="plug/uploadify/jquery.uploadify.js" type="text/javascript"></script>
+<script src="plug/jquery-validation/js/jquery.validate.min.js"></script>
+<script src="page/js/mfunck/importMfunckdoc.js" type="text/javascript"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		importMfunck.init();
+	});
+</script>

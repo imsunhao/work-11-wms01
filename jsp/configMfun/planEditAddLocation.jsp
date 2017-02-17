@@ -1,0 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<div id="registration-form">
+	<form role="form" id="addLocationForm">
+		<div class="form-title">新增储位信息</div>
+		<div class="form-group">
+			<span class="input-icon icon-right"> <input type="text" class="form-control" name="lname" placeholder="储位名称"> <!-- <i class="glyphicon glyphicon-user circular"></i> -->
+			</span>
+		</div>
+		<div class="form-group">
+			<span class="input-icon icon-right"> <input type="text" class="form-control" name="ltray" placeholder="托盘数量"> <!-- <i class="glyphicon glyphicon-user circular"></i> -->
+			</span>
+		</div>
+		<button type="submit" class="btn btn-danger">添加储位信息</button>
+	</form>
+</div>
+<input type="text" value="${baseRegion.regionNo }-${baseRegion.status }-${baseRegion.planId }" name="regionInfo" style="display:none" />
+<script src="plug/jquery-validation/js/jquery.validate.min.js"></script>
+<script src="page/js/configMfun/planEditAddLocation.js" type="text/javascript"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		PlanEditAddLocation.init();
+	});
+</script>

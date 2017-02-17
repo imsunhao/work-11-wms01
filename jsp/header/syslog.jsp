@@ -1,0 +1,62 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<!-- Page Breadcrumb -->
+<div class="page-breadcrumbs">
+	<ul class="breadcrumb">
+		<li><i class="fa fa fa-stack-exchange"></i> <a href="#">系统维护</a></li>
+		<li class="active">功能展示页</li>
+	</ul>
+</div>
+<!-- /Page Breadcrumb -->
+<!-- Page Header -->
+<div class="page-header position-relative">
+	<!-- <div class="header-title">
+		<h1>
+			Forms <small> <i class="fa fa-angle-right"></i> Wizards
+			</small>
+		</h1>
+	</div> -->
+	<!--Header Buttons-->
+	<div class="header-buttons">
+		<a class="sidebar-toggler" href="#"> <i class="fa fa-arrows-h"></i>
+		</a> <a class="refresh" id="refresh-toggler" href="#"> <i class="glyphicon glyphicon-refresh"></i>
+		</a> <a class="fullscreen" id="fullscreen-toggler" href="#"> <i class="glyphicon glyphicon-fullscreen"></i>
+		</a>
+	</div>
+	<!--Header Buttons End-->
+</div>
+<!-- /Page Header -->
+<div class="page-body">
+	<div class="row">
+		<div class="col-xs-12 col-md-12 col-lg-12">
+			<div class="widget">
+				<div class="widget-header ">
+					<span class="widget-caption">"系统维护"功能操作说明</span>
+					<div class="widget-buttons">
+						<a href="#" data-toggle="maximize"> <i class="fa fa-expand"></i>
+						</a> <a href="#" data-toggle="collapse"> <i class="fa fa-minus"></i>
+						</a> <a href="#" data-toggle="dispose"> <i class="fa fa-times"></i>
+						</a>
+					</div>
+				</div>
+				<div class="widget-body">
+					<div id="allmap" style="width:100%;height:600px"></div> 
+					 <script type="text/javascript">   
+				        var map = new BMap.Map("allmap");  
+				        var point = new BMap.Point(116.404, 39.915);  
+				        map.centerAndZoom(point,15);  
+				        map.enableScrollWheelZoom();  
+				    </script>  
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /Page Body -->
+
+<!-- <script src="page/js/index/configsys.js"></script>
+<script type="text/javascript">
+   jQuery(document).ready(function() {
+	   Configsys.init();
+});
+</script> -->

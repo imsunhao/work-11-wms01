@@ -1,0 +1,271 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+<div id="registration-form">
+	<form id="iconResetForm">
+		<div class="form-title">头像设置</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group">
+					<div>
+				        <input id="upload" type="file" style="display: none" name="file" onchange="change(this)"/>
+				        <label for="upload" style="width: 198px; height: 198px; overflow: hidden;">
+							<img id="photo" src="page/img/${activeUser.iconName }" style="width: 198px; height: 198px; ">
+						</label>
+				    </div>
+				</div>
+			</div>
+			
+			<div class="col-sm-6">
+			<div class="form-group">
+				<div id="preview" style="width: 100px; height: 100px; overflow: hidden;">
+					<img id="view_photo" src="page/img/${activeUser.iconName }" style="width: 100px;height: 100px; ">
+				</div><br/><br/>
+				<div class="boxFooter">
+			        <input type="hidden" id="startX" name="x1" value="0">
+			        <input type="hidden" id="startY" name="y1" value="0">
+			        <input type="hidden" id="width" name="x2" value="198">
+			        <input type="hidden" id="height" name="y2" value="198"> 
+			        <!-- <button name="confirm" id="subPhoto" >确&nbsp;定</button> -->
+			        <div id="imgmsg"></div>
+			    </div>
+			</div>
+			
+		</div>
+		<br>
+		<br>
+		<div class="col-sm-12">
+			<div class="form-group">
+				<label for="inputName">Name</label> <span class="input-icon icon-right"> <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" value="${activeUser.loginName }"> <i class="glyphicon glyphicon-user palegreen"></i>
+				</span>
+			</div>
+		</div>
+		
+		<div class="col-sm-12">
+			<div class="form-group">
+				<label for="inputMessage">Message</label> <span class="input-icon icon-right"> <textarea class="form-control" id="inputMessage" name="inputMessage" value="${activeUser.remark }" rows="10"></textarea> <i class="glyphicon glyphicon-briefcase darkorange"></i>
+				</span>
+				<p class="help-block">Your message will be in this text area.</p>
+			</div>
+
+		</div>
+		<!-- <div class="form-group">
+			<div class="checkbox">
+				<label> <input type="checkbox" class="colored-danger"> <span class="text">Notify me through E-mail</span>
+				</label>
+			</div>
+		</div> -->
+		<div class="col-sm-12">
+			<div class="form-group">
+				<button type="submit" class="btn btn-danger">Submit</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<input type="text" class="form-control" name="userid" value="${activeUser.userid }" style="display: none"/>
+<script src="plug/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="plug/ajaxfileupload.js"></script>
+<script src="plug/jquery.imgareaselect-0.9.10/scripts/jquery.imgareaselect.min.js" type="text/javascript"></script>
+<script src="plug/jquery.imgareaselect-0.9.10/scripts/jquery.imgareaselect.pack.js" type="text/javascript"></script>
+<srcipt src="page/js/image.js" type="text/javascript"></srcipt>
+<script src="plug/jquery-validation/js/jquery.validate.min.js"></script>
+
+<script src="page/js/iconReset.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		IconReset.init();
+	});
+	  
+</script>
+
+<script type="text/javascript">
+
+selectrate=1;
+rate=1;
+function preview(img, selection) {
+	if (!selection.width || !selection.height)
+		return;
+		var img=$("#view_photo");
+	var scaleX =  $("#preview").width() / selection.width;
+	var scaleY =  $("#preview").height() / selection.height;
+
+	$('#preview img').css({
+		width : Math.round(scaleX *  $("#photo").width()),
+		height : Math.round(scaleY * $("#photo").height()),
+		marginLeft : -Math.round(scaleX * selection.x1),
+		marginTop : -Math.round(scaleY * selection.y1)
+	});
+	
+	$("#startX").val(Math.round(selection.x1*rate));
+	$("#startY").val(Math.round(selection.y1*rate));
+	$("#width").val(Math.round(selection.width*rate));
+	$("#height").val(Math.round(selection.height*rate));
+}
+
+$(function() {
+	init();
+});
+function init(){
+var width=$('#photo').width();
+var height=$('#photo').height();
+$('#photo').imgAreaSelect({
+  aspectRatio : "1:1",
+  handles : true,
+  fadeSpeed : 200,
+  onSelectChange : preview,
+  //x1: 0, y1: 0, x2: 240, y2: 240
+});
+}
+
+function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+  var param = {top:0, left:0, width:width, height:height};
+  console.log(param);
+  if(maxWidth){
+    rateWidth = width / maxWidth;
+    rateHeight = height / maxHeight;
+    if( rateWidth > rateHeight )
+    {
+        param.width =  maxWidth;
+        param.height = Math.round(height / rateWidth);
+        rate=rateWidth;
+    }else
+    {
+        param.width = Math.round(width / rateHeight);
+        param.height = maxHeight;
+        rate=rateHeight;
+    }
+    /*param.left = Math.round((maxWidth - param.width) / 2);
+    param.top = Math.round((maxHeight - param.height) / 2);*/
+  }  
+  console.log(rate);
+  return param;
+}
+
+function change(file){
+    // Get a reference to the fileList
+    var files = !!file.files ? file.files : [];
+    // If no files were selected, or no FileReader support, return
+    if (!files.length || !window.FileReader) return;
+
+        // Create a new instance of the FileReader
+        var reader = new FileReader();
+  
+        // Read the local file as a DataURL
+        reader.readAsDataURL(files[0]);
+  
+        // When loaded, set image data as background of div
+        reader.onloadend = function(){
+var img=$('#photo');
+img.attr("src",this.result);
+$("#view_photo").attr("src",this.result);
+img.load(function(){
+// 加载完成 
+var img=$('#photo');
+img.width('100%');
+img.height('100%'); 
+
+var rect = clacImgZoomParam(300, 300, img.width(), img.height());
+img.width(rect.width);
+img.height(rect.height); 
+$("#preview").width(img.width()/3);
+$("#preview").height(img.width()/3*selectrate);
+init();
+});
+}
+} 
+
+/* $(document).ready(function () { 
+	  //提交图片剪切信息到后台
+	  $("#subPhoto").click(function(){
+	      var x1 = $("input[name='x1']").val();
+	      var y1 = $("input[name='y1']").val();
+	      var x2 = $("input[name='x2']").val();
+	      var y2 = $("input[name='y2']").val();
+	      var img64 = $("#imghead").attr("src");
+	      alert(x1+":"+y1+":"+x2+":"+y2);
+	      var url = "";
+	      var param = {
+	        'x1': x1,
+	        'y1': y1,
+	        'x2': x2,
+	        'y2': y2,
+	        'image': img64
+	      }
+	      $.post(url,param,function(data){
+	        alert(data);
+	      });
+	  })
+
+	}); 
+
+	//点击图像区域选择图片
+	function changeImg(obj){
+	  //图片选择处理
+	  var file = obj;
+	  var MAXWIDTH  = 198; 
+	  var MAXHEIGHT = 198;
+	  var MAXSIZE = 2048*1024;
+	  var div = document.getElementById('preview');
+	  if (file.files && file.files[0]){
+	    if (file.files[0].size > MAXSIZE) {
+	      alert("more than " + (MAXSIZE/1024/1024) + "M");
+	      return false;
+	    };
+	    div.innerHTML ='<img id=imghead>';
+	    var img = document.getElementById('imghead');
+	    img.onload = function(){
+	       var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+	       img.width  =  rect.width;
+	       img.height =  rect.height;
+	       img.style.marginTop = rect.top+'px';
+	    }
+	    var reader = new FileReader();
+	    reader.onload = function(evt){
+	      img.src = evt.target.result;
+	    }
+	    reader.readAsDataURL(file.files[0]);
+	  }
+
+	  //图片剪切区域处理
+	  $('#imghead').imgAreaSelect({ 
+	      x1:0, 
+	      y1:0, 
+	      x2:100, 
+	      y2:100, 
+	      aspectRatio: '1:1', //比例
+	      handles: true, 
+	      onSelectChange: function(img, selection){//图片剪切区域变化时触发
+	        $("#imgmsg").html("x1:"+selection.x1+", y1:"+selection.y1+", x2:"+selection.x2+", y2:"+selection.y2);
+	      }, 
+	      onSelectEnd: function (img, selection) {//图片剪切区域结束时触发
+	        $('input[name="x1"]').val(selection.x1);
+	        $('input[name="y1"]').val(selection.y1);
+	        $('input[name="x2"]').val(selection.x2);
+	        $('input[name="y2"]').val(selection.y2);
+	     }
+	  }); 
+	}
+
+	//设置图片显示区域为固定大小,方便后台按统一比例截取图片
+	function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+	   var param = {top:0, left:0, width:width, height:height};
+	   if( width>maxWidth || height>maxHeight ){
+	     rateWidth = width / maxWidth;
+	     rateHeight = height / maxHeight;
+	     if( rateWidth > rateHeight ){
+	         param.width =  maxWidth;
+	         param.height = Math.round(height / rateWidth);
+	     }else {
+	         param.width = Math.round(width / rateHeight);
+	         param.height = maxHeight;
+	     }
+	   }
+	   param.left = Math.round((maxWidth - param.width) / 2);
+	   param.top = Math.round((maxHeight - param.height) / 2);
+	   return param;
+	} */
+</script>

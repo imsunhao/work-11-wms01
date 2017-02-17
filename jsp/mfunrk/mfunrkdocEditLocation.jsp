@@ -1,0 +1,118 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<link rel="stylesheet" type="text/css" href="plug/jQuery-Tags-Input-master/dist/jquery.tagsinput.min.css" />
+
+<link href="page/css/configMfun/planEdit.css" rel="stylesheet" type="text/css" />
+
+<div class="widget flat radius-bordered">
+	<div class="widget-header bg-danger">
+		<span class="widget-caption">对入库单据进行储位分配</span>
+	</div>
+
+	<div class="widget-body">
+
+		<div id="registration-form">
+			<div class="form-title">
+				<i class="fa fa-exchange"></i> 对入库单进行明细货品整合后的结果(精确.后两位，四舍五入规则，更高级别的精确度请联系管理员！)
+			</div>
+			<div class="row">
+				<div class="col-xs-6 col-md-6">
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>整合货品明细编号</th>
+								<th>整合货品明细名称</th>
+								<th>整合货品明细数量</th>
+								<th>整合货品明细单位</th>
+							</tr>
+						</thead>
+						<tbody id="goods">
+							<c:forEach items="${result}" var="mfunrkDocs">
+								<tr>
+									<td class="goodsNo">${mfunrkDocs.goodsno}</td>
+									<td class="goodsName">${mfunrkDocs.goodsname}</td>
+									<td class="goodsValue">${mfunrkDocs.goodscount}</td>
+									<td class="goodsUnit">${mfunrkDocs.goodsunit}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<br/>
+		<div class="form-title">
+			<i class="fa fa-flask"></i> 内存分配结果
+		</div>
+
+		<!-- <a id="editabledatatable_new" href="javascript:void(0);" class="btn btn-default">
+            Add New User
+        </a>
+        <hr/> -->
+		<table class="table table-striped table-hover table-bordered" id="editabledatatable">
+			<thead>
+				<tr role="row">
+					<th>平面图</th>
+					<th>储位所在区域</th>
+					<th>储位名称</th>
+					<th>货品编号</th>
+					<th>货品名称</th>
+					<th>货品数量</th>
+					<th>批次</th>
+					<th>创建人</th>
+					<th>状态</th>
+					<!-- <th>操作</th> -->
+				</tr>
+			</thead>
+			<tbody>
+				<% int i = 1; %>
+				<c:forEach items="${mfunrkDistributionlist}" var="mfunrkDistributionlist">
+					 <tr>
+					 	<td>
+					 		<a class="btn btn-darkorange btn-xs lookPlan" data="${mfunrkDistributionlist.planId }">查询仓库占用</a>
+					 		<input type="text" class="form-control input-small" name="planId" value="${mfunrkDistributionlist.planId }" style="display: none">
+					 	</td>
+					 	
+					 	<td><input type="text" class="form-control input-small" name="locationLno" value="${mfunrkDistributionlist.locationLno }"></td>
+					 	<td><input type="text" class="form-control input-small" name="locationLname" value="${mfunrkDistributionlist.locationLname }"></td>
+					 	<td name="goodsNo">${mfunrkDistributionlist.goodsNo }</td>
+					 	<td name="goodsName">${mfunrkDistributionlist.goodsName }</td>
+					 	<td><input type="text" class="form-control input-small" name="distributionlistCount" value="${mfunrkDistributionlist.distributionlistCount }" style="width:77px;"></td>
+					 	<td><input type="text" class="form-control input-small" name="distributionlistBatch" value="${mfunrkDistributionlist.distributionlistBatch }"></td>
+					 	<td name="createuser">${mfunrkDistributionlist.createuser }</td>
+					 	<td>
+					 		<select id="<%= i++ %>" style="width: 100%;">
+					 			<option value="1">完全分配</option>
+					 			<option value="2">部分分配</option>
+							</select>
+					 	</td>
+					 	<!-- <td>
+					 		<a href="#" class="btn btn-info btn-xs edit"><i class="fa fa-edit"></i> 编辑</a>
+					 		<a href="#" class="btn btn-warning btn-xs cancel" data-mode="new"><i class="fa fa-times"></i> Cancel</a>
+                        </td> -->
+					 </tr>
+				</c:forEach>
+            </tbody>
+		</table>
+
+		<div>
+			<button class="btn btn-default submitInfo">确认分配</button>
+		</div>
+
+	</div>
+	
+	<input type="text" value="${rkdjId }" name="rkdjId" style="display: none;" />
+
+	<script src="plug/select2/select2.js"></script>
+	<script src="plug/jQuery-Tags-Input-master/dist/jquery.tagsinput.min.js" type="text/javascript"></script>
+	<script src="plug/jquery-validation/js/jquery.validate.min.js"></script>
+	<script src="page/js/mfunrk/mfunrkdocEditLocation.js" type="text/javascript"></script>
+	<script src="plug/jquery.liveeditor.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			MfunrkdocEditLocation.init();
+		});
+	</script>

@@ -1,0 +1,108 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- Page Breadcrumb -->
+<div class="page-breadcrumbs">
+	<ul class="breadcrumb">
+		<li><i class="fa fa-share-square-o"></i> <a href="#">业务处理</a></li>
+		<li class="active">功能展示页</li>
+	</ul>
+</div>
+<!-- /Page Breadcrumb -->
+<!-- Page Header -->
+<div class="page-header position-relative">
+	<!-- <div class="header-title">
+		<h1>
+			Forms <small> <i class="fa fa-angle-right"></i> Wizards
+			</small>
+		</h1>
+	</div> -->
+	<!--Header Buttons-->
+	<div class="header-buttons">
+		<a class="sidebar-toggler" href="#"> <i class="fa fa-arrows-h"></i>
+		</a> <a class="refresh" id="refresh-toggler" href="#"> <i class="glyphicon glyphicon-refresh"></i>
+		</a> <a class="fullscreen" id="fullscreen-toggler" href="#"> <i class="glyphicon glyphicon-fullscreen"></i>
+		</a>
+	</div>
+	<!--Header Buttons End-->
+</div>
+<!-- /Page Header -->
+<div class="page-body">
+                <div class="row">
+
+                    <div class="col-xs-12 col-md-12 col-lg-12">
+                        <div class="widget">
+                            <div class="widget-header ">
+                                <span class="widget-caption"></span>
+                                <div class="widget-buttons">
+                                    <a href="#" data-toggle="maximize"> <i class="fa fa-expand"></i>
+                                    </a> <a href="#" data-toggle="collapse"> <i class="fa fa-minus"></i>
+                                </a> <a href="#" data-toggle="dispose"> <i class="fa fa-times"></i>
+                                </a>
+                                </div>
+                            </div>
+
+
+                            <div class="widget-body">
+                                <div class="main-text" style="overflow: hidden;">
+                                    <div class="col-xs-6 col-md-6 col-lg-6">
+                                        <h1> <i class="icon glyphicon glyphicon-cog"></i><small>业务处理</small></h1>
+                                        <p>具有"操作员"角色的用户将可以进行入库单入库、出库单出库、库存调整及查询日报及比对库存信息等功能的权限操作,这些操作就是系统核心的业务处理过程。</p>
+                                    </div>
+                                    <div class="col-xs-6 col-md-6 col-lg-6">
+                                        <h1> <i class="icon glyphicon glyphicon-cog"></i><small>入库业务处理的流程</small></h1>
+                                        <ul>
+                                            <li>入库单据管理 ： 创建入库单(手动输入/excel导入) ==&gt; 分配储位 ==&gt; 上架。 </li>
+                                            <li>历史操作记录：展示 你(登录用户)的所有入库单据处理过程的日志类型记录 。 </li>
+                                            <li>入库日报：展示 你(登录用户)的仓库下的 所有入库单据的信息。 </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-xs-6 col-md-6 col-lg-6">
+                                        <h1> <i class="icon glyphicon glyphicon-cog"></i><small>业务处理</small></h1>
+                                        <p>具有"操作员"角色的用户将可以进行入库单入库、出库单出库、库存调整及查询日报及比对库存信息等功能的权限操作,这些操作就是系统核心的业务处理过程。</p>
+                                    </div>
+                                    <div class="col-xs-6 col-md-6 col-lg-6">
+                                        <h1> <i class="icon glyphicon glyphicon-cog"></i><small>入库业务处理的流程</small></h1>
+                                        <ul>
+                                            <li>入库单据管理 ： 创建入库单(手动输入/excel导入) ==&gt; 分配储位 ==&gt; 上架。 </li>
+                                            <li>历史操作记录：展示 你(登录用户)的所有入库单据处理过程的日志类型记录 。 </li>
+                                            <li>入库日报：展示 你(登录用户)的仓库下的 所有入库单据的信息。 </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-xs-6 col-md-6 col-lg-6">
+                                        <h1> <i class="icon glyphicon glyphicon-cog"></i><small>业务处理</small></h1>
+                                        <p>具有"操作员"角色的用户将可以进行入库单入库、出库单出库、库存调整及查询日报及比对库存信息等功能的权限操作,这些操作就是系统核心的业务处理过程。</p>
+                                    </div>
+                                    <div class="col-xs-6 col-md-6 col-lg-6">
+                                        <h1> <i class="icon glyphicon glyphicon-cog"></i><small>入库业务处理的流程</small></h1>
+                                        <ul>
+                                            <li>入库单据管理 ： 创建入库单(手动输入/excel导入) ==&gt; 分配储位 ==&gt; 上架。 </li>
+                                            <li>历史操作记录：展示 你(登录用户)的所有入库单据处理过程的日志类型记录 。 </li>
+                                            <li>入库日报：展示 你(登录用户)的仓库下的 所有入库单据的信息。 </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-xs-6 col-md-6 col-lg-6">
+                                        <h1> <i class="icon glyphicon glyphicon-cog"></i><small>业务处理</small></h1>
+                                        <p>具有"操作员"角色的用户将可以进行入库单入库、出库单出库、库存调整及查询日报及比对库存信息等功能的权限操作,这些操作就是系统核心的业务处理过程。</p>
+                                    </div>
+                                    <div class="col-xs-6 col-md-6 col-lg-6">
+                                        <h1> <i class="icon glyphicon glyphicon-cog"></i><small>入库业务处理的流程</small></h1>
+                                        <ul>
+                                            <li>入库单据管理 ： 创建入库单(手动输入/excel导入) ==&gt; 分配储位 ==&gt; 上架。 </li>
+                                            <li>历史操作记录：展示 你(登录用户)的所有入库单据处理过程的日志类型记录 。 </li>
+                                            <li>入库日报：展示 你(登录用户)的仓库下的 所有入库单据的信息。 </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- /Page Body -->
+
+<script src="page/js/index/mfun.js"></script>
+<script type="text/javascript">
+   jQuery(document).ready(function() {
+	Mfun.init();
+});
+</script>

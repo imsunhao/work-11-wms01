@@ -1,0 +1,104 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<div class="widget flat radius-bordered" style="width: 600px;">
+	<div class="widget-header bg-palegreen">
+		<span class="widget-caption">新增用户</span>
+	</div>
+	<div class="widget-body">
+		<div id="registration-form">
+			<form id="addUserForm">
+				<div class="form-title">用户基本信息</div>
+				<div class="form-group">
+					<span class="input-icon icon-right"> <input type="text" class="form-control" name="loginName" placeholder="登录账户"> <i class="glyphicon glyphicon-user circular"></i>
+					</span>
+				</div>
+				<div class="form-group">
+					<span class="input-icon icon-right"> <input type="text" class="form-control" name="email" placeholder="E-mail"> <i class="fa fa-envelope-o circular"></i>
+					</span>
+				</div>
+				<div class="form-group">
+					<span class="input-icon icon-right"> <input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="账户密码"> <i class="fa fa-lock circular"></i>
+					</span>
+				</div>
+				<div class="form-group">
+					<span class="input-icon icon-right"> <input type="password" class="form-control" name="loginPasswordRe" placeholder="确认密码"> <i class="fa fa-lock circular"></i>
+					</span>
+				</div>
+				<div class="form-title">详情用户信息</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<span class="input-icon icon-right"> <input type="text" class="form-control" name="userName" placeholder="用户昵称"> <i class="fa fa-user"></i>
+							</span>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<span class="input-icon icon-right"> <input type="text" class="form-control" name="homeaddress" placeholder="家庭住址"> <i class="fa fa-user"></i>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<span class="input-icon icon-right"> <input type="text" class="form-control" name="telephone" placeholder="联系方式(010-12345678)"> <i class="glyphicon glyphicon-earphone"></i>
+							</span>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<span class="input-icon icon-right"> <input type="text" class="form-control" name="phone" placeholder="手机号码"> <i class="glyphicon glyphicon-phone"></i>
+							</span>
+						</div>
+					</div>
+				</div>
+				<hr class="wide">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<span class="input-icon icon-right"> <input class="form-control date-picker" type="text" data-date-format="dd-mm-yyyy" name="birthday" placeholder="出生日期"> <i class="fa fa-calendar"></i>
+							</span>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<span class="input-icon icon-right"> <input type="text" class="form-control" name="remark" placeholder="备注"> <i class="fa fa-globe"></i>
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="radio">
+						<label> <input name="sex" type="radio" checked="checked" value="true"> <span class="text"> 男 </span>
+						</label> &nbsp; <label> <input name="sex" type="radio" checked="checked" value="false"> <span class="text">女 </span>
+						</label>
+					</div>
+					<!-- <span class="input-icon icon-right"> <input type="text" class="form-control" name="sex" placeholder="用户性别"> <i class="fa fa-user"></i>
+					</span> -->
+				</div>
+
+				<div class="form-group">
+					<div class="checkbox">
+						<label> <input type="checkbox" class="colored-blue" name="status" value="1"> <span class="text">是否启用账户?</span>
+						</label>
+					</div>
+				</div>
+
+				<div class="form-actions">
+					<button type="submit" class="btn default">确认新增</button>
+					<button type="reset" class="btn default">重置信息</button>
+				</div>
+			</form>
+			
+		</div>
+	</div>
+</div>
+
+<script src="plug/jquery-validation/js/jquery.validate.min.js"></script>
+<script src="page/js/configsys/userAddForm.js" type="text/javascript"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		UserAddForm.init();
+	});
+</script>
